@@ -7,12 +7,25 @@
 
   <script>
     async function start() {
-      const res = await fetch("https://exotel-caller-backend.onrender.com/start-campaign", {
-        method: "POST",
-        mode:"cors"
-      });
-      const msg = await res.text();
-      alert(msg);
+      try {
+        const res = await fetch("https://exotel-caller-backend.onrender.com/start-campaign", {
+          method: "POST",
+          mode: "cors"
+        });
+
+        if (!res.ok) {
+          const errText = await res.text();
+          console.error("Error response from backend:", res.status, errText);
+          alert(`Call failed: ${res.status} - ${errText}`);
+          return;
+        }
+
+        const msg = await res.text();
+        alert(msg);
+      } catch (error) {
+        console.error("Fetch error:", error);
+        alert("Network or CORS error. Check console for details.");
+      }
     }
   </script>
 </body>
