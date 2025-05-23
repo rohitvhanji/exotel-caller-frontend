@@ -8,7 +8,8 @@
   <script>
     async function start() {
       const res = await fetch("https://exotel-caller-backend.onrender.com/start-campaign", {
-        method: "POST"
+        method: "POST",
+        mode:"cors"
       });
       const msg = await res.text();
       alert(msg);
