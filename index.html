@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head><title>Exotel Caller</title></head>
+<body>
+  <h2>Outbound Call Campaign</h2>
+  <button onclick="start()">Start Calling</button>
+
+  <script>
+    async function start() {
+      const res = await fetch("https://your-backend.onrender.com/start-campaign", {
+        method: "POST"
+      });
+      const msg = await res.text();
+      alert(msg);
+    }
+  </script>
+</body>
+</html>
